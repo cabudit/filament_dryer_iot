@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include "secrets.h"  // Include your secrets.h file for sensitive data
 #include "WiFiManager.h"
 #include "TelegramManager.h"
 #include "RelayController.h"
@@ -7,9 +8,6 @@
 #define DHTPIN 15
 #define DHTTYPE DHT22
 
-const char* ssid = "mboed";
-const char* password = "mboed123";
-const char* botToken = "7987528842:AAGijy7HF-B8sZUwvxGTniDshVqcAXlwHIQ";
 
 // Inisialisasi pin relay
 //relay 1 = GPIO 25 -> PTC
@@ -20,9 +18,9 @@ const char* botToken = "7987528842:AAGijy7HF-B8sZUwvxGTniDshVqcAXlwHIQ";
 uint8_t relayPins[] = {25, 18, 19, 21};
 RelayController relay(relayPins, 4);
 
-WiFiManager wifiManager(ssid, password);
+WiFiManager wifiManager(WIFI_SSID, WIFI_PASSWORD);
 WiFiClientSecure secured_client;
-TelegramManager telegram(botToken, secured_client, relay);
+TelegramManager telegram(TELEGRAM_BOT_TOKEN, secured_client, relay);
 DHT dht(DHTPIN, DHTTYPE);
 
 void setup() {
