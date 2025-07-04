@@ -26,6 +26,7 @@ void TelegramManager::handleMessage(TBMessage &msg) {
 
     if (command == "/cek") {
         String status = "*Status Sensor:*\n";
+        status += "🌡⚡ Suhu Power Supply: " + String(_tsupply, 1) + " °C\n";
         status += "🌡 Suhu: " + String(_temperature, 1) + " °C\n";
         status += "💧 Kelembaban: " + String(_humidity, 1) + " %\n";
 
@@ -37,13 +38,14 @@ void TelegramManager::handleMessage(TBMessage &msg) {
     } else if (command == "/relay1_off") {
         _relay.off(0);
         _bot.sendMessage(msg, "Relay 1 dimatikan", nullptr);
-
+ 
     } else {
         _bot.sendMessage(msg, "Perintah tidak dikenali. Gunakan /cek",nullptr);
     }
 }
 
-void TelegramManager::setSensorData(float temperature, float humidity) {
+void TelegramManager::setSensorData(float tsupply, float temperature, float humidity) {
+    _tsupply = tsupply;
     _temperature = temperature;
     _humidity = humidity;
 }

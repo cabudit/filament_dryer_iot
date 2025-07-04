@@ -10,13 +10,14 @@ public:
     TelegramManager(const char* token, Client& client, RelayController& relayController);
     void begin();
     void update();
-    void setSensorData(float temperature, float humidity);
+    void setSensorData(float tsupply, float temperature, float humidity);
 
 private:
     void handleMessage(TBMessage &msg);
 
     const char* _token;
     AsyncTelegram2 _bot;
+    float _tsupply = 0.0;
     float _temperature = 0.0;
     float _humidity = 0.0;
     RelayController& _relay;
