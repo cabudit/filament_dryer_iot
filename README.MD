@@ -1,5 +1,3 @@
-## ✅ Revisi Minor (versi yang sudah disempurnakan):
-
 # Filament Dryer ESP32
 
 An intelligent humidity and temperature controller for filament storage, built with **ESP32**.
